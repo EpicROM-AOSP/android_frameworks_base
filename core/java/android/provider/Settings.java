@@ -6292,6 +6292,13 @@ public final class Settings {
          */
         @Readable
         public static final String HEADS_UP_BLACKLIST_VALUES = "heads_up_blacklist_values";
+		
+		/**
+         * Whether to enable status and navigation bar color in battery saver mode.
+         * Heads up timeout configuration
+         * @hide
+         */
+        public static final String HEADS_UP_TIMEOUT = "heads_up_timeout";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to
