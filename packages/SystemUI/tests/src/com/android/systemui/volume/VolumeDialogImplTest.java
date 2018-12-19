@@ -101,6 +101,8 @@ public class VolumeDialogImplTest extends SysuiTestCase {
     @Mock
     InteractionJankMonitor mInteractionJankMonitor;
     @Mock
+    TunerService mTunerService;
+    @Mock
     private DumpManager mDumpManager;
 
     @Before
@@ -124,6 +126,7 @@ public class VolumeDialogImplTest extends SysuiTestCase {
                 mInteractionJankMonitor,
                 mDeviceConfigProxy,
                 mExecutor,
+				mTunerService,
                 mDumpManager
             );
         mDialog.init(0, null);
