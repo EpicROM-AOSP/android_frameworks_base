@@ -59,6 +59,7 @@ import android.hardware.usb.gadget.V1_0.Status;
 import android.hardware.usb.gadget.V1_2.UsbSpeed;
 import android.hidl.manager.V1_0.IServiceNotification;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
@@ -1572,6 +1573,7 @@ public class UsbDeviceManager implements ActivityTaskManagerInternal.ScreenObser
                                             .system_notification_accent_color))
                             .setContentTitle(title)
                             .setContentText(message)
+                            .setSubText(Build.ID)
                             .setContentIntent(pi)
                             .setVisibility(Notification.VISIBILITY_PUBLIC);
 
