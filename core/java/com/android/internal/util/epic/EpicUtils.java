@@ -402,4 +402,17 @@ public class EpicUtils {
             e.printStackTrace();
         }
     }
+
+    public static void killForegroundApp() {
+        final IStatusBarService service = IStatusBarService.Stub.asInterface(
+                        ServiceManager.getService("statusbar"));
+        if (service != null) {
+            try {
+                service.killForegroundApp();
+            } catch (RemoteException e) {
+                // do nothing.
+            }
+        }
+    }
+
 }
