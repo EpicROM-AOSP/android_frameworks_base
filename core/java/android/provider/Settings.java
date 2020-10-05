@@ -5538,7 +5538,7 @@ public final class Settings {
          */
         @Readable
         public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
-        
+
         /**
          * Whether auto brightness is applied one shot when screen is turned on.
          * Default 0
@@ -6239,6 +6239,9 @@ public final class Settings {
          */
         public static final String RIGHT_VERTICAL_BACK_SWIPE_APP_ACTIVITY_ACTION = "right_vertical_back_swipe_app_activity_action";
 
+        /** @hide */
+        public static final String BACK_GESTURE_HAPTIC = "back_gesture_haptic";
+
         /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
@@ -6373,6 +6376,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_FONT_SIZE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_LAYOUT);
             PRIVATE_SETTINGS.add(OMNI_FOOTER_TEXT_SHOW);
+            PRIVATE_SETTINGS.add(BACK_GESTURE_HAPTIC);
         }
 
         /**
