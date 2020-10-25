@@ -357,4 +357,7 @@ oneway interface IStatusBar
      */
     void setBlockedGesturalNavigation(boolean blocked);
     void killForegroundApp();
+
+    void screenPinningStateChanged(boolean enabled);
+    void leftInLandscapeChanged(boolean isLeft);
 }
