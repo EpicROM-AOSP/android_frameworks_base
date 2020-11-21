@@ -617,7 +617,7 @@ public class NavigationBarView extends FrameLayout implements TunerService.Tunab
         if (!visible) {
             mTransitionListener.onBackAltCleared();
         }
-        mImeVisible = visible;
+        mEdgeBackGestureHandler.setImeVisible(visible);
         mRotationButtonController.getRotationButton().setCanShowRotationButton(!visible);
     }
 
