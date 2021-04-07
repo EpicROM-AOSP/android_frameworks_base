@@ -287,8 +287,6 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
     private float mMLResults;
 
     private boolean mEdgeHapticEnabled;
-    private static final int HAPTIC_DURATION = 20;
-
     private final Vibrator mVibrator;
 
     // For debugging
@@ -306,7 +304,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
                 public void triggerBack() {
                     // Notify FalsingManager that an intentional gesture has occurred.
 					if (mEdgeHapticEnabled) {
-                        vibrateTick();
+                        vibrateBack(true /* Click */);
                     }
                     mFalsingManager.isFalseTouch(BACK_GESTURE);
                     boolean sendDown = sendEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK);
@@ -528,9 +526,10 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
         mIsNavBarShownTransiently = isTransient;
     }
 
-    private void vibrateTick() {
+    private void vibrateBack(boolean light) {
             AsyncTask.execute(() ->
-                    mVibrator.vibrate(VibrationEffect.createOneShot(HAPTIC_DURATION, VibrationEffect.DEFAULT_AMPLITUDE)));
+                    mVibrator.vibrate(VibrationEffect.get(light ? VibrationEffect.EFFECT_CLICK :
+                        VibrationEffect.EFFECT_HEAVY_CLICK, true  /* fallback */)));
     }
 
     public void setBlockedGesturalNavigation(boolean blocked) {
