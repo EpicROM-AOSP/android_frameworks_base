@@ -5777,7 +5777,15 @@ public final class PowerManagerService extends SystemService
             } finally {
                 Binder.restoreCallingIdentity(ident);
             }
+            mHandler.post(() -> sendSleepBroadcast());
         }
+        
+        private void sendSleepBroadcast() {
+        Intent intent = new Intent(
+                com.android.internal.util.epic.content.Intent.ACTION_GO_TO_SLEEP);
+        intent.setFlags(Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+        mContext.sendBroadcastAsUser(intent, UserHandle.SYSTEM);
+    }
 
         @Override // Binder call
         public void nap(long eventTime) {
