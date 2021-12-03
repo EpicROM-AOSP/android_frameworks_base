@@ -19,4 +19,7 @@
     <!-- Deep sleep info -->
     <string name="status_deep_sleep">(Deep sleep: %1$d%2$s)</string>
 
+    <!-- Whether to pulse onFingerDown actions instead
+        of waking the screen while the screen is off or in lpm. -->
+    <bool name="config_pulseOnFingerDown">false</bool>
 </resources>
