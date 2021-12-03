@@ -584,6 +584,11 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
             mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
         }
     }
+	
+	@Override
+    public void setBlockedGesturalNavigation(boolean blocked) {
+        mCentralSurfaces.setBlockedGesturalNavigation(blocked);
+    }
 
     private boolean isGoingToSleep() {
         return mWakefulnessLifecycle.getWakefulness()
