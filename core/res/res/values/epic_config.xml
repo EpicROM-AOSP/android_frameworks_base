@@ -196,4 +196,7 @@
     </string>
     <string name="config_batterymeterLandPowersavePathOrigami" translatable="false">@string/config_batterymeterLandPerimeterPathOrigami</string>
     <string name="config_batterymeterLandErrorPerimeterPathOrigami" translatable="false">@string/config_batterymeterLandPerimeterPathOrigami</string>
+	
+	<!-- Whether to cancel fingerprint operation if not idle -->
+    <bool name="config_fpCancelIfNotIdle">false</bool>
 </resources>
