@@ -5987,6 +5987,12 @@ public final class Settings {
          * @hide
          */
         public static final String QQS_LAYOUT = "qqs_layout";
+		
+		/**
+         * Whether footer #Xtended text shows
+         * @hide
+         */
+        public static final String OMNI_FOOTER_TEXT_SHOW = "omni_footer_text_show";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to
@@ -6121,6 +6127,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_FONT_SIZE);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_LAYOUT);
+            PRIVATE_SETTINGS.add(OMNI_FOOTER_TEXT_SHOW);
         }
 
         /**
