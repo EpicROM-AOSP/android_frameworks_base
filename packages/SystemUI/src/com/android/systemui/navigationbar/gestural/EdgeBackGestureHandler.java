@@ -1106,7 +1106,7 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
                 ActionUtils.switchScreenOff(mContext);
                 break;
             case 8: // Screenshot
-                ActionUtils.takeScreenshot(true);
+                EpicUtils.takeScreenshot(true);
                 break;
             case 9: // Notification panel
                 ActionUtils.toggleNotifications();
@@ -1131,6 +1131,9 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
                 break;
             case 16: // Powermenu
                 EpicUtils.showPowerMenu();
+                break;
+            case 17: // Partial Screenshot
+                EpicUtils.takeScreenshot(false);
                 break;
         }
     }
