@@ -1123,6 +1123,12 @@ public class EdgeBackGestureHandler implements PluginListener<NavigationEdgeBack
             case 13: // Kill app
                 ActionHandler.killProcess(mContext);
                 break;
+            case 14: // Skip song
+                EpicUtils.sendSystemKeyToStatusBar(KeyEvent.KEYCODE_MEDIA_NEXT);
+                break;
+            case 15: // Previous song
+                EpicUtils.sendSystemKeyToStatusBar(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+                break;
         }
     }
 
