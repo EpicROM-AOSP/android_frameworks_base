@@ -93,5 +93,7 @@ public class SystemSettings {
         Settings.System.NAVBAR_LAYOUT_VIEWS,
 		Settings.System.QS_TILE_LABEL_HIDE,
         Settings.System.QS_TILE_VERTICAL_LAYOUT,
+        Settings.System.QS_LAYOUT,
+        Settings.System.QQS_LAYOUT,
     };
 }

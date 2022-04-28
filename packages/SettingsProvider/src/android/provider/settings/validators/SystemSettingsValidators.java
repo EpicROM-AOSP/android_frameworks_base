@@ -16,6 +16,7 @@
 
 package android.provider.settings.validators;
 
+import static android.provider.settings.validators.SettingsValidators.ANY_INTEGER_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.ANY_STRING_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.BOOLEAN_VALIDATOR;
 import static android.provider.settings.validators.SettingsValidators.COMPONENT_NAME_VALIDATOR;
@@ -247,5 +248,7 @@ public class SystemSettingsValidators {
         VALIDATORS.put(System.FINGERPRINT_WAKE_UNLOCK, NON_NEGATIVE_INTEGER_VALIDATOR);
         VALIDATORS.put(System.QS_TILE_LABEL_HIDE, BOOLEAN_VALIDATOR);
         VALIDATORS.put(System.QS_TILE_VERTICAL_LAYOUT, BOOLEAN_VALIDATOR);
+        VALIDATORS.put(System.QS_LAYOUT, ANY_INTEGER_VALIDATOR);
+        VALIDATORS.put(System.QQS_LAYOUT, ANY_INTEGER_VALIDATOR);
     }
 }
