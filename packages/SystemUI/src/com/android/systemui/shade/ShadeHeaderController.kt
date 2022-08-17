@@ -538,6 +538,7 @@ constructor(
         updateQQSPaddings()
         qsBatteryModeController.updateResources()
         updateQsBatteryStyle()
+		clock.updateClockSize()
     }
 
     private fun updateQQSPaddings() {
