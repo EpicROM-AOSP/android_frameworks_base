@@ -1009,7 +1009,6 @@ public class ScreenDecorations implements CoreStartable, Tunable , Dumpable {
         if (DEBUG_DISABLE_SCREEN_DECORATIONS) {
             return;
         }
-
         pw.println("  mIsPrivacyDotEnabled:" + isPrivacyDotEnabled());
         pw.println("  shouldOptimizeOverlayVisibility:" + shouldOptimizeVisibility());
         final boolean supportsShowingFaceScanningAnim = mFaceScanningFactory.getHasProviders();
@@ -1049,7 +1048,12 @@ public class ScreenDecorations implements CoreStartable, Tunable , Dumpable {
                 }
             }
         }
-        mRoundedCornerResDelegate.dump(pw, args);
+        if (!DEBUG_DISABLE_SCREEN_DECORATIONS) {
+            mRoundedCornerResDelegate.dump(pw, args);
+        } else {
+            pw.println("  RoundedCornerResDelegate state:" +
+                       " skipped due to ScreenDecorations disabled");
+        }
     }
 
     @VisibleForTesting
