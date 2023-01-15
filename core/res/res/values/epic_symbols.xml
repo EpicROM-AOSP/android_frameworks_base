@@ -157,5 +157,8 @@
 	
 	<!-- Whether to cancel fingerprint operation if not idle -->
     <java-symbol type="bool" name="config_fpCancelIfNotIdle" />
+	
+	<!-- Enforce DisplayModeDirector to select user preferred resolution -->
+   <java-symbol type="bool" name="config_forceToUseSelectedResolution" />
 
 </resources>
