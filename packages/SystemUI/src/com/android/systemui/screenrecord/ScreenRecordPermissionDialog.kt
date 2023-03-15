@@ -60,6 +60,9 @@ class ScreenRecordPermissionDialog(
     private lateinit var tapsView: View
     private lateinit var audioSwitch: Switch
     private lateinit var options: Spinner
+    private lateinit var stopDotSwitch: Switch
+    private lateinit var lowQualitySwitch: Switch
+    private lateinit var longerDurationSwitch: Switch
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setDialogTitle(R.string.screenrecord_start_label)
@@ -104,6 +107,9 @@ class ScreenRecordPermissionDialog(
         tapsView = findViewById(R.id.show_taps)
         updateTapsViewVisibility()
         options = findViewById(R.id.screen_recording_options)
+        stopDotSwitch = findViewById(R.id.screenrecord_stopdot_switch)
+        lowQualitySwitch = findViewById(R.id.screenrecord_lowquality_switch)
+        longerDurationSwitch = findViewById(R.id.screenrecord_longer_timeout_switch)
         val a: ArrayAdapter<*> =
             ScreenRecordingAdapter(context, android.R.layout.simple_spinner_dropdown_item, MODES)
         a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -134,6 +140,9 @@ class ScreenRecordPermissionDialog(
         val audioMode =
             if (audioSwitch.isChecked) options.selectedItem as ScreenRecordingAudioSource
             else ScreenRecordingAudioSource.NONE
+        val showStopDot = stopDotSwitch.isChecked
+        val lowQuality = lowQualitySwitch.isChecked
+        val longerDuration = longerDurationSwitch.isChecked
         val startIntent =
             PendingIntent.getForegroundService(
                 userContext,
@@ -143,6 +152,9 @@ class ScreenRecordPermissionDialog(
                     Activity.RESULT_OK,
                     audioMode.ordinal,
                     showTaps,
+                    showStopDot,
+                    lowQuality,
+                    longerDuration,
                     captureTarget
                 ),
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
