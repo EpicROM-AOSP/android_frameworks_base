@@ -343,6 +343,7 @@ constructor(
                 Intent(Intent.ACTION_POWER_USAGE_SUMMARY), 0
             )
         }
+        clock.setQsHeader()
     }
 
     override fun onViewAttached() {
