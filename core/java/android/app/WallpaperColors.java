@@ -100,9 +100,9 @@ public final class WallpaperColors implements Parcelable {
     private static final float MIN_COLOR_OCCURRENCE = 0.05f;
 
     // Decides when dark theme is optimal for this wallpaper
-    private static final float DARK_THEME_MEAN_LUMINANCE = 30.0f;
+    private static final float DARK_THEME_MEAN_LUMINANCE = 0.3f;
     // Minimum mean luminosity that an image needs to have to support dark text
-    private static final float BRIGHT_IMAGE_MEAN_LUMINANCE = 70.0f;
+    private static final float BRIGHT_IMAGE_MEAN_LUMINANCE = SystemProperties.getInt(
             "persist.wallpapercolors.threshold", 70) / 100f;
     // We also check if the image has dark pixels in it,
     // to avoid bright images with some dark spots.
@@ -256,9 +256,9 @@ public final class WallpaperColors implements Parcelable {
         this(primaryColor, secondaryColor, tertiaryColor, 0);
 
         // Calculate dark theme support based on primary color.
-        final double[] tmpLab = new double[3];
-        ColorUtils.colorToLAB(primaryColor.toArgb(), tmpLab);
-        final double luminance = tmpLab[0];
+        final float[] tmpHsl = new float[3];
+        ColorUtils.colorToHSL(primaryColor.toArgb(), tmpHsl);
+        final float luminance = tmpHsl[2];
         if (luminance < DARK_THEME_MEAN_LUMINANCE) {
             mColorHints |= HINT_SUPPORTS_DARK_THEME;
         }
@@ -552,10 +552,10 @@ public final class WallpaperColors implements Parcelable {
 
         // This bitmap was already resized to fit the maximum allowed area.
         // Let's just loop through the pixels, no sweat!
-        double[] tmpLab = new double[3];
+        float[] tmpHsl = new float[3];
         for (int i = 0; i < pixels.length; i++) {
             int pixelColor = pixels[i];
-            ColorUtils.colorToLAB(pixelColor, tmpLab);
+            ColorUtils.colorToHSL(pixelColor, tmpHsl);
             final int alpha = Color.alpha(pixelColor);
 
             // Apply composite colors where the foreground is a black layer with an alpha value of
