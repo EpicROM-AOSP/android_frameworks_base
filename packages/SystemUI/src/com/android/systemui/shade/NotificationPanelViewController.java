@@ -404,10 +404,8 @@ public final class NotificationPanelViewController implements Dumpable {
     private OpenCloseListener mOpenCloseListener;
     private GestureRecorder mGestureRecorder;
 
-    private GestureDetector mDoubleTapToSleepGesture;
+    private GestureDetector mLockscreenDoubleTapToSleep;
     private boolean mIsLockscreenDoubleTapEnabled;
-    private boolean mDoubleTapToSleepEnabled;
-    private int mStatusBarHeaderHeight;
 
     private boolean mPanelExpanded;
 
@@ -936,11 +934,11 @@ public final class NotificationPanelViewController implements Dumpable {
 
         updateUserSwitcherFlags();
         mKeyguardBottomAreaViewModel = keyguardBottomAreaViewModel;
-		mDoubleTapToSleepGesture = new GestureDetector(mView.getContext(),
+		mLockscreenDoubleTapToSleep = new GestureDetector(context,
                 new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                EpicUtils.switchScreenOff(mView.getContext());
+                EpicUtils.switchScreenOff(context);
                 return true;
             }
         });
@@ -1173,8 +1171,6 @@ public final class NotificationPanelViewController implements Dumpable {
                 R.dimen.heads_up_status_bar_padding);
         mMaxOverscrollAmountForPulse = mResources.getDimensionPixelSize(
                 R.dimen.pulse_expansion_max_top_overshoot);
-		mStatusBarHeaderHeight = mResources.getDimensionPixelSize(
-                R.dimen.status_bar_height);		
         mUdfpsMaxYBurnInOffset = mResources.getDimensionPixelSize(R.dimen.udfps_burn_in_offset_y);
         mSplitShadeScrimTransitionDistance = mResources.getDimensionPixelSize(
                 R.dimen.split_shade_scrim_transition_distance);
@@ -3371,11 +3367,7 @@ public final class NotificationPanelViewController implements Dumpable {
     }
 
     public void setLockscreenDoubleTapToSleep(boolean isDoubleTapEnabled) {
-        mIsLockscreenDoubleTapEnabled = isDoubleTapEnabled;
-    }
-
-    public void updateDoubleTapToSleep(boolean doubleTapToSleepEnabled) {
-        mDoubleTapToSleepEnabled = doubleTapToSleepEnabled;
+        mIsLockscreenDoubleTapEnabled = isDoubleTapEnabled
     }
 
     public void resetTranslation() {
@@ -4866,11 +4858,9 @@ public final class NotificationPanelViewController implements Dumpable {
                 expand(true /* animate */);
             }
 
-            if ((mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
-                    && mBarState == StatusBarState.KEYGUARD) ||
-                    (!mQsExpanded && mDoubleTapToSleepEnabled
-                    && event.getY() < mStatusBarHeaderHeight)) {
-                mDoubleTapToSleepGesture.onTouchEvent(event);
+            if (mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
+                    && mStatusBarState == StatusBarState.KEYGUARD) {
+                mLockscreenDoubleTapToSleep.onTouchEvent(event);
             }
 
             initDownStates(event);
@@ -4991,7 +4981,7 @@ public final class NotificationPanelViewController implements Dumpable {
                         onTrackingStarted();
                     }
                     if (isFullyCollapsed() && !mHeadsUpManager.hasPinnedHeadsUp()
-                            && !mCentralSurfaces.isBouncerShowing() && !mDoubleTapToSleepEnabled) {
+                            && !mCentralSurfaces.isBouncerShowing()) {
                         startOpening(event);
                     }
                     break;
