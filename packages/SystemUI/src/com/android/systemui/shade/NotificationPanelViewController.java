@@ -235,8 +235,6 @@ import com.android.systemui.util.Utils;
 import com.android.systemui.util.time.SystemClock;
 import com.android.wm.shell.animation.FlingAnimationUtils;
 
-import com.android.internal.util.epic.EpicUtils;
-
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -403,10 +401,6 @@ public final class NotificationPanelViewController implements Dumpable {
     private TrackingStartedListener mTrackingStartedListener;
     private OpenCloseListener mOpenCloseListener;
     private GestureRecorder mGestureRecorder;
-
-    private GestureDetector mLockscreenDoubleTapToSleep;
-    private boolean mIsLockscreenDoubleTapEnabled;
-
     private boolean mPanelExpanded;
 
     private boolean mKeyguardQsUserSwitchEnabled;
@@ -934,15 +928,6 @@ public final class NotificationPanelViewController implements Dumpable {
 
         updateUserSwitcherFlags();
         mKeyguardBottomAreaViewModel = keyguardBottomAreaViewModel;
-		mLockscreenDoubleTapToSleep = new GestureDetector(context,
-                new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                EpicUtils.switchScreenOff(context);
-                return true;
-            }
-        });
-		
         mKeyguardBottomAreaInteractor = keyguardBottomAreaInteractor;
         KeyguardLongPressViewBinder.bind(
                 mView.requireViewById(R.id.keyguard_long_press),
@@ -3366,10 +3351,6 @@ public final class NotificationPanelViewController implements Dumpable {
         updateMaxDisplayedNotifications(true);
     }
 
-    public void setLockscreenDoubleTapToSleep(boolean isDoubleTapEnabled) {
-        mIsLockscreenDoubleTapEnabled = isDoubleTapEnabled
-    }
-
     public void resetTranslation() {
         mView.setTranslationX(0f);
     }
@@ -4857,12 +4838,6 @@ public final class NotificationPanelViewController implements Dumpable {
             if (mLastEventSynthesizedDown && event.getAction() == MotionEvent.ACTION_UP) {
                 expand(true /* animate */);
             }
-
-            if (mIsLockscreenDoubleTapEnabled && !mPulsing && !mDozing
-                    && mStatusBarState == StatusBarState.KEYGUARD) {
-                mLockscreenDoubleTapToSleep.onTouchEvent(event);
-            }
-
             initDownStates(event);
 
             // If pulse is expanding already, let's give it the touch. There are situations
