@@ -123,7 +123,6 @@ public class CollapsedStatusBarFragment extends Fragment implements CommandQueue
     private View mOngoingCallChip;
     private View mClockView;
     private View mNotificationIconAreaInner;
-    private View mClockView;
     private View mCenterClockView;
     private View mRightClockView;
     private int mDisabled1;
