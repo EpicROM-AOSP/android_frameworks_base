@@ -460,7 +460,7 @@ public class ThemeOverlayController implements CoreStartable, Dumpable {
         mKeyguardTransitionInteractor = keyguardTransitionInteractor;
         mUiModeManager = uiModeManager;
         dumpManager.registerDumpable(TAG, this);
-        mThemeController = new EpicThemeController(mContext.getContentResolver(), mBgHandler);
+        mThemeController = new EpicThemeController(mContext, mBgHandler);
     }
 
     @Override
